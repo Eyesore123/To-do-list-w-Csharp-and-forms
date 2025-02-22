@@ -59,7 +59,7 @@
             button1.TabIndex = 1;
             button1.Text = "Add a task";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += addButton_Click;
             // 
             // button2
             // 
@@ -69,7 +69,7 @@
             button2.TabIndex = 2;
             button2.Text = "Delete a task";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += deleteButton_Click;
             // 
             // textBox1
             // 
@@ -125,7 +125,14 @@
             if (!string.IsNullOrWhiteSpace(newTask)) {
                 tasks.Add(newTask);
                 listBox1.Items.Add(newTask);
+                textBox1.Clear();
             }
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            // Add content here
+        }
+
     } 
 }
