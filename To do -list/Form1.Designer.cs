@@ -26,13 +26,19 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
+        /// 
+
+
+        // Here we use list data type to ensure that the tasks can change dynamically
+        private List<string> tasks = new List<string>();
+
         private void InitializeComponent()
         {
             label1 = new Label();
             button1 = new Button();
             button2 = new Button();
             textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            listBox1 = new ListBox();
             SuspendLayout();
             // 
             // label1
@@ -47,22 +53,23 @@
             // 
             // button1
             // 
-            button1.Location = new Point(770, 192);
+            button1.Location = new Point(770, 204);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(75, 41);
             button1.TabIndex = 1;
-            button1.Text = "button1";
+            button1.Text = "Add a task";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(770, 231);
+            button2.Location = new Point(770, 376);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(75, 43);
             button2.TabIndex = 2;
-            button2.Text = "button2";
+            button2.Text = "Delete a task";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // textBox1
             // 
@@ -74,22 +81,21 @@
             textBox1.TextAlign = HorizontalAlignment.Center;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
-            // textBox2
+            // listBox1
             // 
-            textBox2.Location = new Point(336, 311);
-            textBox2.MinimumSize = new Size(200, 200);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(400, 200);
-            textBox2.TabIndex = 4;
-            textBox2.TextAlign = HorizontalAlignment.Center;
-            textBox2.TextChanged += textBox2_TextChanged;
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(336, 291);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(400, 274);
+            listBox1.TabIndex = 4;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1088, 690);
-            Controls.Add(textBox2);
+            Controls.Add(listBox1);
             Controls.Add(textBox1);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -106,6 +112,20 @@
         private Button button1;
         private Button button2;
         private TextBox textBox1;
-        private TextBox textBox2;
-    }
+        private ListBox listBox1;
+
+
+        // Functions for adding new tasks etc.
+        // Adding event handlers to the buttons
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            string newTask = textBox1.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(newTask)) {
+                tasks.Add(newTask);
+                listBox1.Items.Add(newTask);
+            }
+        }
+    } 
 }
