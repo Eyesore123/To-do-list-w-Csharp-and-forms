@@ -39,6 +39,8 @@
             button2 = new Button();
             textBox1 = new TextBox();
             listBox1 = new ListBox();
+            // Custom properties for drawing the listbox items!!!
+
             SuspendLayout();
             // 
             // label1
