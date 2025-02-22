@@ -116,12 +116,13 @@
         private TextBox textBox1;
         private ListBox listBox1;
 
+        // Custom function for drawing listbox1 comes here and is still missing. It's used to improve the styles since listbox doesn't support text-aligned drawing and such.
 
-        // Functions for adding new tasks etc.
-        // Adding event handlers to the buttons
+        // Function for adding event handlers to the buttons:
 
         private void addButton_Click(object sender, EventArgs e)
-        {
+        { // Note: text inside the textbox is always a string and doesn't need any conversions, but when you extract data from the selected item (listbox),
+          // you need to use ToString() method first, because the list uses string values and we need to make sure we are both adding and deleting strings
             string newTask = textBox1.Text.Trim();
 
             if (!string.IsNullOrWhiteSpace(newTask)) {
@@ -133,7 +134,13 @@
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            // Add content here
+
+            if (listBox1.SelectedItem != null)
+            {
+                string task = listBox1.SelectedItem.ToString();
+                tasks.Remove(task);
+                listBox1.Items.Remove(task);
+            }
         }
 
     } 
