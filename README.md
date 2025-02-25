@@ -22,4 +22,4 @@ This is a great small project for those who want to get started with C# programm
 
 # Issues
 
-* Wordwrapping is tied to listbox item height, which means that added items do not scale after they take more than three lines of space in height (texts starts going on top of each other)
+* Wordwrapping is tied to listbox item height, which means that added items do not scale after they take more than three lines of space in height (texts start going on top of each other)
