@@ -91,9 +91,10 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(400, 274);
             listBox1.TabIndex = 4;
-            // Custom styles:
+            // Custom styles for listbox:
 
             listBox1.DrawMode = DrawMode.OwnerDrawFixed;
+            listBox1.SelectionMode = SelectionMode.MultiExtended;
             listBox1.DrawItem += new DrawItemEventHandler(listBox1_drawItem);
 
 
@@ -177,6 +178,15 @@
             e.Graphics.DrawString(text, e.Font, Brushes.Black, e.Bounds, StringFormat);
 
             e.DrawFocusRectangle();
+        }
+
+        // Enables multiple selection for list items
+        private void ShowSelectedItems()
+        {
+            foreach (var selectedItem in listBox1.SelectedItems)
+            {
+                MessageBox.Show(selectedItem.ToString());
+            }
         }
 
     } 
