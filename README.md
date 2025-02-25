@@ -15,6 +15,7 @@ This is a great small project for those who want to get started with C# programm
 # Planned improvements
 
 * Multiselection for list-items
+* Linebreaks addition for textbox and list-items
 * Attach Enter-key to 'Add new task' -events
-* Text boxes, some of which have dynamic descriptions based on user events
+* More text boxes, some of which have dynamic descriptions based on user events
 * Background image and other style improvements?
