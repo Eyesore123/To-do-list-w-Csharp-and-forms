@@ -122,8 +122,6 @@
         private TextBox textBox1;
         private ListBox listBox1;
 
-        // Custom function for drawing listbox1 comes here and is still missing. It's used to improve the styles since listbox doesn't support text-aligned drawing and such.
-
         // Function for adding event handlers to the buttons:
 
         private void addButton_Click(object sender, EventArgs e)
@@ -148,6 +146,8 @@
                 listBox1.Items.Remove(task);
             }
         }
+
+        // A custom function for drawing list items. Text alignment cannot be applied to list items ->  a new StringFormat object is created inside the drawItem function 
 
         private void listBox1_drawItem(object sender, DrawItemEventArgs e)
         {
