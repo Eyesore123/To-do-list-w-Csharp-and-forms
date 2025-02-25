@@ -40,7 +40,6 @@
             button2 = new Button();
             textBox1 = new TextBox();
             listBox1 = new ListBox();
-
             SuspendLayout();
             // 
             // label1
@@ -76,28 +75,30 @@
             // textBox1
             // 
             textBox1.Location = new Point(336, 174);
+            textBox1.Margin = new Padding(3, 10, 3, 10);
             textBox1.MinimumSize = new Size(100, 100);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
+            textBox1.ScrollBars = ScrollBars.Vertical;
             textBox1.Size = new Size(400, 100);
             textBox1.TabIndex = 3;
             textBox1.TextAlign = HorizontalAlignment.Center;
             textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.WordWrap = true;
             // 
             // listBox1
             // 
+            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
+            listBox1.IntegralHeight = false;
+            listBox1.ItemHeight = 50;
             listBox1.Location = new Point(336, 291);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(400, 274);
-            listBox1.TabIndex = 4;
-            // Custom styles for listbox:
-
-            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
             listBox1.SelectionMode = SelectionMode.MultiExtended;
-            listBox1.DrawItem += new DrawItemEventHandler(listBox1_drawItem);
-
-
+            listBox1.Size = new Size(400, 264);
+            listBox1.TabIndex = 4;
+            listBox1.DrawItem += listBox1_drawItem;
+            listBox1.ScrollAlwaysVisible = true;
             // 
             // Form1
             // 
@@ -143,6 +144,7 @@
             if (listBox1.SelectedItem != null)
             {
                 string task = listBox1.SelectedItem.ToString();
+
                 tasks.Remove(task);
                 listBox1.Items.Remove(task);
             }
@@ -157,6 +159,9 @@
             if (e.Index < 0) return;
             // Assign the selected item to a string var
             string text = listBox1.Items[e.Index].ToString();
+
+            Rectangle backgroundRect = e.Bounds;
+
             // Use different styles for selected and unselected items
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
@@ -167,12 +172,17 @@
                 e.Graphics.FillRectangle(Brushes.White, e.Bounds);
             }
 
+            // Rectangle to contain the text
+
+            Rectangle textRect = new Rectangle(e.Bounds.Left, e.Bounds.Top + 5, e.Bounds.Right, e.Bounds.Height);
+
             // StringFormat object for horizontal alignment
 
             StringFormat StringFormat = new StringFormat
             {
                 Alignment = StringAlignment.Center,
-                LineAlignment = StringAlignment.Center
+                LineAlignment = StringAlignment.Center,
+                FormatFlags = StringFormatFlags.NoClip | StringFormatFlags.MeasureTrailingSpaces // Allow word wrapping
             };
 
             e.Graphics.DrawString(text, e.Font, Brushes.Black, e.Bounds, StringFormat);
