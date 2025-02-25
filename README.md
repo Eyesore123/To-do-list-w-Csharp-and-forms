@@ -14,8 +14,12 @@ This is a great small project for those who want to get started with C# programm
 
 # Planned improvements
 
-* Multiselection for list-items
-* Linebreaks addition for textbox and list-items
 * Attach Enter-key to 'Add new task' -events
 * More text boxes, some of which have dynamic descriptions based on user events
+* Task calculator
+* Task categories and filtering
 * Background image and other style improvements?
+
+# Issues
+
+* Wordwrapping is tied to listbox item height, which means that added items do not scale after they take more than three lines of space in height (texts starts going on top of each other)
