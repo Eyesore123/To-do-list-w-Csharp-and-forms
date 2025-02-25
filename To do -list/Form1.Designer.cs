@@ -32,6 +32,7 @@
         // Here we use list data type to ensure that the tasks can change dynamically
         private List<string> tasks = new List<string>();
 
+        // Constructor
         private void InitializeComponent()
         {
             label1 = new Label();
@@ -39,7 +40,6 @@
             button2 = new Button();
             textBox1 = new TextBox();
             listBox1 = new ListBox();
-            // Custom properties for drawing the listbox items!!!
 
             SuspendLayout();
             // 
@@ -91,6 +91,12 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(400, 274);
             listBox1.TabIndex = 4;
+            // Custom styles:
+
+            listBox1.DrawMode = DrawMode.OwnerDrawFixed;
+            listBox1.DrawItem += new DrawItemEventHandler(listBox1_drawItem);
+
+
             // 
             // Form1
             // 
@@ -141,6 +147,36 @@
                 tasks.Remove(task);
                 listBox1.Items.Remove(task);
             }
+        }
+
+        private void listBox1_drawItem(object sender, DrawItemEventArgs e)
+        {
+
+            //Return if list is empty
+            if (e.Index < 0) return;
+            // Assign the selected item to a string var
+            string text = listBox1.Items[e.Index].ToString();
+            // Use different styles for selected and unselected items
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                e.Graphics.FillRectangle(Brushes.Aquamarine, e.Bounds);
+            }
+            else
+            {
+                e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+            }
+
+            // StringFormat object for horizontal alignment
+
+            StringFormat StringFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            e.Graphics.DrawString(text, e.Font, Brushes.Black, e.Bounds, StringFormat);
+
+            e.DrawFocusRectangle();
         }
 
     } 
