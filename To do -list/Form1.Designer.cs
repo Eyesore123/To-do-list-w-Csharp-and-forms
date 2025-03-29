@@ -44,7 +44,8 @@
 
             // Background image and layout:
 
-            this.BackgroundImage = Image.FromFile(@"Resources\todolist.jpeg");
+            string imagePath = Path.Combine(Application.StartupPath, @"Resources\todolist.jpeg");
+            this.BackgroundImage = Image.FromFile(imagePath);
             this.BackgroundImageLayout = ImageLayout.Stretch;
             // 
             // label1
