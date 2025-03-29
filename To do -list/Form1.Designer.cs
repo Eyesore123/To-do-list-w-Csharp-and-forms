@@ -41,6 +41,11 @@
             textBox1 = new TextBox();
             listBox1 = new ListBox();
             SuspendLayout();
+
+            // Background image and layout:
+
+            this.BackgroundImage = Image.FromFile(@"Resources\todolist.jpeg");
+            this.BackgroundImageLayout = ImageLayout.Stretch;
             // 
             // label1
             // 
@@ -114,6 +119,7 @@
             Text = "To do -list";
             ResumeLayout(false);
             PerformLayout();
+
         }
 
         #endregion
